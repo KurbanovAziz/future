@@ -3,6 +3,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:future_savings_app_29_t/floor/dao/goal_dao.dart';
 import 'package:future_savings_app_29_t/trak/data/goal_data.dart';
@@ -64,8 +65,8 @@ class _GoalCreationState extends State<GoalCreation> {
     _nameController.text = goal.name;
     _amountController.text = goal.number.toString();
     _dateController.text = goal.date;
-    if (goal.image != null && goal.image!.startsWith('/data/user/')) {
-      _selectedImage = File(goal.image!);
+    if (goal.image.startsWith('/data/user/')) {
+      _selectedImage = File(goal.image);
       selectedImagePath = null;
     } else {
       selectedImagePath = goal.image;
@@ -83,74 +84,6 @@ class _GoalCreationState extends State<GoalCreation> {
         _selectedImage = File(savedImagePath);
       });
     }
-  }
-
-  void photosPermissionStatus() async {
-    if (Platform.isAndroid) {
-      final androidInfo = await DeviceInfoPlugin().androidInfo;
-      PermissionStatus status;
-
-      if (androidInfo.version.sdkInt <= 32) {
-        status = await Permission.storage.request();
-      } else {
-        status = await Permission.photos.request();
-      }
-
-      if (status.isGranted) {
-        print('Permission granted.');
-        _openGallery();
-      } else if (status.isDenied) {
-        print('Permission denied.');
-        _showSettingsDialog();
-      } else if (status.isPermanentlyDenied) {
-        _showSettingsDialog();
-      }
-    } else if (Platform.isIOS) {
-      final status = await Permission.photos.request();
-      if (status.isGranted) {
-        _openGallery();
-      } else if (status.isDenied) {
-        print('Permission denied.');
-        _showSettingsDialog();
-      } else if (status.isPermanentlyDenied) {
-        _showSettingsDialog();
-      }
-    }
-  }
-
-  void _showSettingsDialog() {
-    showCupertinoDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return CupertinoAlertDialog(
-          title: const Text('Access to photos has been denied'),
-          content: const Text(
-              'Go to settings to allow access to photos to set cover'),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              isDestructiveAction: true,
-              child: const Text(
-                'Cancel',
-                style: TextStyle(color: Colors.blue),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            CupertinoDialogAction(
-              child: const Text(
-                'Settings',
-                style: TextStyle(color: FsaColor.blue),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-                openAppSettings();
-              },
-            ),
-          ],
-        );
-      },
-    );
   }
 
   @override
@@ -228,6 +161,7 @@ class _GoalCreationState extends State<GoalCreation> {
               controller: _amountController,
               style: const TextStyle(color: Colors.white),
               keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               decoration: InputDecoration(
                 hintText: 'Enter number',
                 hintStyle: const TextStyle(color: Colors.grey),
@@ -328,7 +262,9 @@ class _GoalCreationState extends State<GoalCreation> {
   Widget _buildMyPhotoOption() {
     bool isSelected = _selectedImage != null && selectedImagePath == null;
     return GestureDetector(
-      onTap: photosPermissionStatus,
+      onTap: (){
+        _openGallery();
+      },
       child: Container(
         width: 100.w,
         height: 100.h,
