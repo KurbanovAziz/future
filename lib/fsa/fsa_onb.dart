@@ -61,10 +61,10 @@ class _SenseOnbState extends State<TBConBording> {
               Container(
                 decoration: BoxDecoration(
                   color: Colors.black,
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(14.r),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0.r),
                   child: Image.asset(
                     Assets.imagesLogo,
                     height: 60.h,
@@ -261,7 +261,7 @@ class OnboardingPageItem extends StatelessWidget {
     return Container(
       alignment: Alignment.topCenter,
       child: Padding(
-        padding: const EdgeInsets.only(top: 20.0),
+        padding: EdgeInsets.only(top: 20.0.h),
         child: Column(
           children: [
             ClipRect(
@@ -275,9 +275,9 @@ class OnboardingPageItem extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             SizedBox(
-              height: 110,
+              height: 110.h,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Text(

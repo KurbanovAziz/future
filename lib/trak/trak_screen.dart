@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:future_savings_app_29_t/generated/assets.dart';
 import 'package:future_savings_app_29_t/trak/screens/goal_creation.dart';
 import 'package:future_savings_app_29_t/trak/screens/savings_goals.dart';
@@ -59,11 +60,11 @@ class _TrakScreenState extends State<TrakScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Savings goals tracker",
           style: TextStyle(
             color: Colors.white,
-            fontSize: 16,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -71,7 +72,7 @@ class _TrakScreenState extends State<TrakScreen> {
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0.r),
           child: goals.isEmpty
               ? _buildEmptyState()
               : _buildGoalsList(),
@@ -91,17 +92,17 @@ class _TrakScreenState extends State<TrakScreen> {
               );
             },
             child: Container(
-              height: 56,
+              height: 56.h,
               width: double.infinity,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(32),
+                borderRadius: BorderRadius.circular(32.r),
                 color: FsaColor.blue,
               ),
-              child: const Center(
+              child: Center(
                 child: Text(
                   'Add New Goal',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w500,
                     color: FsaColor.white,
                   ),
@@ -118,16 +119,16 @@ class _TrakScreenState extends State<TrakScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
+        Text(
           "Create your first long-term goal",
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white,
-            fontSize: 20,
+            fontSize: 20.sp,
             fontWeight: FontWeight.w700,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
         GestureDetector(
           onTap: () {
             Navigator.push(
@@ -138,17 +139,17 @@ class _TrakScreenState extends State<TrakScreen> {
             );
           },
           child: Container(
-            height: 56,
+            height: 56.h,
             width: double.infinity,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(32),
+              borderRadius: BorderRadius.circular(32.r),
               color: FsaColor.blue,
             ),
-            child: const Center(
+            child: Center(
               child: Text(
                 'Add New Goal',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w500,
                   color: FsaColor.white,
                 ),
@@ -178,9 +179,9 @@ class _TrakScreenState extends State<TrakScreen> {
                 },
                 child: Card(
                   color: FsaColor.darkGrey,
-                  margin: const EdgeInsets.symmetric(vertical: 8.0),
+                  margin: EdgeInsets.symmetric(vertical: 8.0.h),
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: EdgeInsets.all(16.0.r),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -190,65 +191,65 @@ class _TrakScreenState extends State<TrakScreen> {
                             children: [
                               Text(
                                 goal.name,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 18,
+                                  fontSize: 18.sp,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const SizedBox(height: 8.0),
+                              SizedBox(height: 8.0.h),
                               Row(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
                                         color: FsaColor.black,
-                                        borderRadius: BorderRadius.circular(8)
+                                        borderRadius: BorderRadius.circular(8.r)
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(8.0.r),
                                       child: Column(
                                         children: [
-                                          const Text(
+                                          Text(
                                             'Left (\$):',
                                             style: TextStyle(
                                                 color: Colors.white54,
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: 12),
+                                                fontSize: 12.sp),
                                           ),
                                           Text(
                                             '${goal.number - (goal.accumulated ?? 0)}',
-                                            style: const TextStyle(
+                                            style: TextStyle(
                                                 color: Colors.blue,
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: 16),
+                                                fontSize: 16.sp),
                                           ),
                                         ],
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 8),
+                                  SizedBox(width: 8.w),
                                   Container(
                                     decoration: BoxDecoration(
                                         color: FsaColor.black,
-                                        borderRadius: BorderRadius.circular(8)
+                                        borderRadius: BorderRadius.circular(8.r)
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(8.0.r),
                                       child: Column(
                                         children: [
-                                          const Text(
+                                          Text(
                                             'Years left (\$):',
                                             style: TextStyle(
                                                 color: Colors.white54,
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: 12),
+                                                fontSize: 12.sp),
                                           ),
                                           Text(
                                             '${(DateTime.now().difference(goalDate).inDays ~/ 365).abs()}',
-                                            style: const TextStyle(
+                                            style: TextStyle(
                                                 color: Colors.blue,
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: 16),
+                                                fontSize: 16.sp),
                                           ),
                                         ],
                                       ),
@@ -256,7 +257,7 @@ class _TrakScreenState extends State<TrakScreen> {
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 16.0),
+                              SizedBox(height: 16.0.h),
                               Row(
                                 children: [
                                   Expanded(child: LinearProgressIndicator(
@@ -267,12 +268,12 @@ class _TrakScreenState extends State<TrakScreen> {
                                       valueColor: const AlwaysStoppedAnimation<Color>(FsaColor.green),
                                     ),
                                   ),
-                                  const SizedBox(width: 8),
+                                  SizedBox(width: 8.w),
                                   Text(
                                     '${(goal.number != 0 ? ((goal.accumulated ?? 0) / goal.number * 100).clamp(0.0,100.0).toInt() : 0)}%',
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 16,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -282,15 +283,15 @@ class _TrakScreenState extends State<TrakScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 100,
-                          width: 100,
+                          height: 100.h,
+                          width: 100.w,
                           child: CircleAvatar(
                             backgroundImage: goal.image != null
                                 ? (goal.image!.startsWith('/data/user/') && File(goal.image!).existsSync()
                                 ? FileImage(File(goal.image!))
                                 : AssetImage(goal.image!)) as ImageProvider<Object>
                                 : null,
-                            radius: 30,
+                            radius: 30.r,
                             child: goal.image == null
                                 ? const Icon(Icons.image, size: 30)
                                 : null, // Placeholder icon if no image
@@ -306,8 +307,8 @@ class _TrakScreenState extends State<TrakScreen> {
                 right: 0,
                 top: 0,
                 child: Container(
-                  width: 40,
-                  height: 40,
+                  width: 40.w,
+                  height: 40.h,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.circle,

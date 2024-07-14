@@ -1,5 +1,6 @@
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../floor/dao/appdatabase/app_database.dart';
@@ -47,11 +48,11 @@ class _SavingsGoalsState extends State<SavingsGoals> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Savings goals tracker',
           style: TextStyle(
             color: Colors.white,
-            fontSize: 16,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -64,28 +65,28 @@ class _SavingsGoalsState extends State<SavingsGoals> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0.r),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               currentGoal.name,
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 24),
-            const Text(
+            SizedBox(height: 24.h),
+            Text(
               'Target Amount',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             TextField(
               enabled: false,
               style: const TextStyle(color: Colors.white),
@@ -95,21 +96,21 @@ class _SavingsGoalsState extends State<SavingsGoals> {
                 filled: true,
                 fillColor: const Color(0xFF2F2F2F),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(90),
+                  borderRadius: BorderRadius.circular(90.r),
                   borderSide: BorderSide.none,
                 ),
               ),
             ),
-            const SizedBox(height: 16),
-            const Text(
+            SizedBox(height: 16.h),
+            Text(
               'Accumulated',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             TextField(
               style: const TextStyle(color: Colors.white),
               keyboardType: TextInputType.number,
@@ -119,21 +120,21 @@ class _SavingsGoalsState extends State<SavingsGoals> {
                 filled: true,
                 fillColor: const Color(0xFF2F2F2F),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(90),
+                  borderRadius: BorderRadius.circular(90.r),
                   borderSide: BorderSide.none,
                 ),
               ),
             ),
-            const SizedBox(height: 16),
-            const Text(
+            SizedBox(height: 16.h),
+            Text(
               'Left',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             TextField(
               style: const TextStyle(color: Colors.white),
               readOnly: true,
@@ -144,12 +145,12 @@ class _SavingsGoalsState extends State<SavingsGoals> {
                 filled: true,
                 fillColor: const Color(0xFF2F2F2F),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(90),
+                  borderRadius: BorderRadius.circular(90.r),
                   borderSide: BorderSide.none,
                 ),
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24.h),
             const Spacer(),
             SizedBox(
               width: double.infinity,
@@ -158,17 +159,17 @@ class _SavingsGoalsState extends State<SavingsGoals> {
                   showAddMoneyBottomSheet(context);
                 },
                 child: Container(
-                  height: 56,
+                  height: 56.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(32),
+                    borderRadius: BorderRadius.circular(32.r),
                     color: FsaColor.blue,
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
                       'Add money',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                         color: FsaColor.white,
                       ),
@@ -194,26 +195,26 @@ class _SavingsGoalsState extends State<SavingsGoals> {
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: FsaColor.darkGrey,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25.0),
-                topRight: Radius.circular(25.0),
+                topLeft: Radius.circular(25.0.r),
+                topRight: Radius.circular(25.0.r),
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0.r),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const Align(
+                  Align(
                     alignment: Alignment.topLeft,
                     child: Text(
                       "Add money",
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16.sp),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16.h),
                   TextField(
                     controller: _moneyController,
                     keyboardType: TextInputType.number,
@@ -222,20 +223,20 @@ class _SavingsGoalsState extends State<SavingsGoals> {
                       hintText: 'Enter number',
                       hintStyle: const TextStyle(color: Colors.white54),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
+                        borderRadius: BorderRadius.circular(25.0.r),
                         borderSide: const BorderSide(
                           color: Colors.white54,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
+                        borderRadius: BorderRadius.circular(25.0.r),
                         borderSide: const BorderSide(
                           color: Colors.white,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   ElevatedButton(
                     onPressed: () {
                       _saveGoal();
@@ -244,7 +245,7 @@ class _SavingsGoalsState extends State<SavingsGoals> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
+                        borderRadius: BorderRadius.circular(25.r),
                       ),
                       minimumSize: const Size(double.infinity, 50),
                     ),

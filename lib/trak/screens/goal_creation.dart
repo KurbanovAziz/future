@@ -3,6 +3,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:future_savings_app_29_t/floor/dao/goal_dao.dart';
 import 'package:future_savings_app_29_t/trak/data/goal_data.dart';
 import 'package:get_it/get_it.dart';
@@ -142,11 +143,11 @@ class _GoalCreationState extends State<GoalCreation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Goal creation',
           style: TextStyle(
             color: Colors.white,
-            fontSize: 16,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -159,28 +160,28 @@ class _GoalCreationState extends State<GoalCreation> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0.r),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'New Goal',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 24),
-            const Text(
+            SizedBox(height: 24.h),
+            Text(
               'Goal Name',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             TextField(
               controller: _nameController,
               style: const TextStyle(color: Colors.white),
@@ -190,21 +191,21 @@ class _GoalCreationState extends State<GoalCreation> {
                 filled: true,
                 fillColor: const Color(0xFF2F2F2F),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(90),
+                  borderRadius: BorderRadius.circular(90.r),
                   borderSide: BorderSide.none,
                 ),
               ),
             ),
-            const SizedBox(height: 16),
-            const Text(
+            SizedBox(height: 16.h),
+            Text(
               'Target Amount',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             TextField(
               controller: _amountController,
               style: const TextStyle(color: Colors.white),
@@ -215,21 +216,21 @@ class _GoalCreationState extends State<GoalCreation> {
                 filled: true,
                 fillColor: const Color(0xFF2F2F2F),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(90),
+                  borderRadius: BorderRadius.circular(90.r),
                   borderSide: BorderSide.none,
                 ),
               ),
             ),
-            const SizedBox(height: 16),
-            const Text(
+            SizedBox(height: 16.h),
+            Text(
               'Target Date',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             TextField(
               controller: _dateController,
               style: const TextStyle(color: Colors.white),
@@ -241,23 +242,23 @@ class _GoalCreationState extends State<GoalCreation> {
                 filled: true,
                 fillColor: const Color(0xFF2F2F2F),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(90),
+                  borderRadius: BorderRadius.circular(90.r),
                   borderSide: BorderSide.none,
                 ),
               ),
             ),
-            const SizedBox(height: 24),
-            const Text(
+            SizedBox(height: 24.h),
+            Text(
               'Choose a cover',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
             SizedBox(
-              height: 120,
+              height: 120.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: coverImages.length + 1,
@@ -277,17 +278,17 @@ class _GoalCreationState extends State<GoalCreation> {
                   _saveGoal();
                 },
                 child: Container(
-                  height: 56,
+                  height: 56.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(32),
+                    borderRadius: BorderRadius.circular(32.r),
                     color: FsaColor.blue,
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
                       'Add Goal',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                         color: FsaColor.white,
                       ),
@@ -307,13 +308,13 @@ class _GoalCreationState extends State<GoalCreation> {
     return GestureDetector(
       onTap: photosPermissionStatus,
       child: Container(
-        width: 100,
-        height: 100,
-        margin: const EdgeInsets.only(right: 8.0),
+        width: 100.w,
+        height: 100.h,
+        margin: EdgeInsets.only(right: 8.0.w),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           color: FsaColor.darkGrey,
-          border: isSelected ? Border.all(color: Colors.white, width: 2) : null,
+          border: isSelected ? Border.all(color: Colors.white, width: 2.w) : null,
         ),
         child: Center(
           child: _selectedImage == null
@@ -338,19 +339,19 @@ class _GoalCreationState extends State<GoalCreation> {
         });
       },
       child: Container(
-        margin: const EdgeInsets.only(right: 8.0),
+        margin: EdgeInsets.only(right: 8.0.w),
         decoration: BoxDecoration(
           border: isSelected
-              ? Border.all(color: Colors.white, width: 2)
+              ? Border.all(color: Colors.white, width: 2.w)
               : null,
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8.0.r),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8.0.r),
           child: Image.asset(
             imagePath,
-            width: 100,
-            height: 100,
+            width: 100.w,
+            height: 100.h,
             fit: BoxFit.cover,
           ),
         ),
@@ -366,7 +367,7 @@ class _GoalCreationState extends State<GoalCreation> {
         return CupertinoActionSheet(
           actions: [
             SizedBox(
-              height: 250,
+              height: 250.h,
               child: CupertinoDatePicker(
                 initialDateTime: selectedDate,
                 mode: CupertinoDatePickerMode.date,

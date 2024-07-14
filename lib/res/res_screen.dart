@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:future_savings_app_29_t/fsa/fsa_color.dart';
 
 import 'financial_advice_data.dart';
@@ -14,12 +15,12 @@ class ResScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text(
+        title: Text(
           'Retirement resources',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w700,
-            fontSize: 16,
+            fontSize: 16.sp,
           ),
         ),
         centerTitle: true,
@@ -39,10 +40,10 @@ class ResScreen extends StatelessWidget {
               title: Container(
                 decoration: BoxDecoration(
                   color: FsaColor.darkGrey,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0.r),
                   child: Text(
                     financialAdvice[index]['title']!,
                     style: const TextStyle(color: Colors.white),
@@ -65,7 +66,7 @@ class ResScreen extends StatelessWidget {
           decoration: const BoxDecoration(
             color: FsaColor.darkGrey,
           ),
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0.r),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -73,19 +74,19 @@ class ResScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Text(
                 description,
-                style: const TextStyle(color: Colors.white, fontSize: 16),
+                style: TextStyle(color: Colors.white, fontSize: 16.sp),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
@@ -93,7 +94,7 @@ class ResScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
+                    borderRadius: BorderRadius.circular(25.r),
                   ),
                   minimumSize: const Size(double.infinity, 50),
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:future_savings_app_29_t/fsa/fsa_btom.dart';
 import 'package:future_savings_app_29_t/fsa/fsa_color.dart';
 
@@ -13,7 +14,7 @@ class PaywallScreen extends StatelessWidget {
     return  Scaffold(
       backgroundColor: FsaColor.black,
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 16),
+        padding: EdgeInsets.symmetric(vertical: 50.0.h, horizontal: 16.w),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -27,64 +28,64 @@ class PaywallScreen extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => const TBCBotmBar()),
                       );
                     },
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.close,
                       color: Colors.white,
-                      size: 24,
+                      size: 24.sp,
                     )
                 ),
               ),
               Image.asset(
                   Assets.imagesPaywall
               ),
-              const Align(
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                     "Get Premium",
                     style: TextStyle(
                         color: FsaColor.blue,
-                        fontSize: 32,
+                        fontSize: 32.sp,
                         fontWeight: FontWeight.w400
                     )
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               _buildFeatureRow('Access Endless Calculations'),
               _buildFeatureRow('Create Unlimited Funds'),
-              const SizedBox(height: 24),
-              const Text(
+              SizedBox(height: 24.h),
+              Text(
                   "Unlock all features just for ",
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 24,
+                      fontSize: 24.sp,
                       fontWeight: FontWeight.w400
                   )
               ),
-              const Text(
+              Text(
                   "\$0.99",
                   style: TextStyle(
                     color: FsaColor.blue,
-                    fontSize: 24,
+                    fontSize: 24.sp,
                     fontWeight: FontWeight.w400,
                   )
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Container(
-                  height: 56,
+                  height: 56.h,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(32),
+                    borderRadius: BorderRadius.circular(32.r),
                     color: FsaColor.blue,
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'GET PREMIUM',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w500,
                           color: FsaColor.white,
                         ),
@@ -94,7 +95,7 @@ class PaywallScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -102,11 +103,11 @@ class PaywallScreen extends StatelessWidget {
                         onPressed: () {
                           // todo
                         },
-                        child: const Text(
+                        child: Text(
                             "Terms of Use",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 14
+                                fontSize: 14.sp
                             )
                         )
                     ),
@@ -114,11 +115,11 @@ class PaywallScreen extends StatelessWidget {
                         onPressed: () {
                           // todo
                         },
-                        child: const Text(
+                        child: Text(
                             "Restore",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 14
+                                fontSize: 14.sp
                             )
                         )
                     ),
@@ -126,11 +127,11 @@ class PaywallScreen extends StatelessWidget {
                       onPressed: () {
                         //todo
                       },
-                      child: const Text(
+                      child: Text(
                           "Privacy Policy",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 14
+                              fontSize: 14.sp
                           )
                       ),
                     )
@@ -146,7 +147,7 @@ class PaywallScreen extends StatelessWidget {
 
   Widget _buildFeatureRow(String feature) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      padding: EdgeInsets.symmetric(vertical: 5.0.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -154,11 +155,11 @@ class PaywallScreen extends StatelessWidget {
             CupertinoIcons.check_mark_circled,
             color: CupertinoColors.activeBlue,
           ),
-          const SizedBox(width: 10),
+          SizedBox(width: 10.w),
           Text(
             feature,
-            style: const TextStyle(
-              fontSize: 16,
+            style: TextStyle(
+              fontSize: 16.sp,
               color: CupertinoColors.white,
             ),
           ),
