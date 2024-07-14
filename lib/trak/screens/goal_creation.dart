@@ -155,6 +155,10 @@ class _GoalCreationState extends State<GoalCreation> {
 
   @override
   Widget build(BuildContext context) {
+    bool isButtonDisabled = _nameController.text.isEmpty ||
+        _amountController.text.isEmpty ||
+        _dateController.text.isEmpty;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -288,7 +292,9 @@ class _GoalCreationState extends State<GoalCreation> {
             SizedBox(
               width: double.infinity,
               child: GestureDetector(
-                onTap: () {
+                onTap: isButtonDisabled
+                    ? null
+                    : () {
                   _saveGoal();
                   Navigator.pop(context);
                 },
@@ -297,7 +303,7 @@ class _GoalCreationState extends State<GoalCreation> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(32.r),
-                    color: FsaColor.blue,
+                    color: isButtonDisabled ? Colors.grey : FsaColor.blue,
                   ),
                   child: Center(
                     child: Text(
@@ -305,7 +311,7 @@ class _GoalCreationState extends State<GoalCreation> {
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
-                        color: FsaColor.white,
+                        color: isButtonDisabled ? Colors.white : FsaColor.white,
                       ),
                     ),
                   ),
@@ -317,6 +323,7 @@ class _GoalCreationState extends State<GoalCreation> {
       ),
     );
   }
+
 
   Widget _buildMyPhotoOption() {
     bool isSelected = _selectedImage != null && selectedImagePath == null;
