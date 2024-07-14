@@ -7,5 +7,15 @@ class Assets {
   static const String iconsRes = 'assets/icons/res.svg';
   static const String iconsTrak = 'assets/icons/trak.svg';
   static const String imagesLogo = 'assets/images/logo.png';
+  static const String imagesOnboard1 = 'assets/images/onboard1.png';
+  static const String imagesOnboard2 = 'assets/images/onboard2.png';
+  static const String imagesOnboard3 = 'assets/images/onboard3.png';
+  static const String imagesOnboard4 = 'assets/images/onboard4.png';
+  static const String imagesPaywall = 'assets/images/paywall.png';
+  static const String imagesPhoto1 = 'assets/images/photo1.png';
+  static const String imagesPhoto2 = 'assets/images/photo2.png';
+  static const String imagesPhoto3 = 'assets/images/photo3.png';
+  static const String imagesPhoto4 = 'assets/images/photo4.png';
+  static const String imagesPhoto5 = 'assets/images/photo5.png';
 
 }

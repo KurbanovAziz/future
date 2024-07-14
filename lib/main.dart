@@ -1,12 +1,23 @@
 import 'package:apphud/apphud.dart';
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:future_savings_app_29_t/fsa/fsa_btom.dart';
+import 'package:future_savings_app_29_t/floor/dao/appdatabase/app_database.dart';
 import 'package:future_savings_app_29_t/fsa/fsa_color.dart';
 import 'package:future_savings_app_29_t/fsa/fsa_dok.dart';
+import 'package:future_savings_app_29_t/fsa/fsa_onb.dart';
+import 'package:get_it/get_it.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  ///Floor
+  AppDatabase database =
+  await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+
+  GetIt.I.registerSingleton(database);
+  GetIt.I.registerSingleton(EventBus());
+
   runApp(const MyApp());
 
   await Apphud.start(apiKey: FsaDokm.aPpHadK);
@@ -35,7 +46,7 @@ class MyApp extends StatelessWidget {
         ),
         home: const SplashScreen(
           seconds: 3,
-          navigateAfterSeconds: TBCBotmBar(),
+          navigateAfterSeconds: TBConBording(),
         ),
       ),
     );

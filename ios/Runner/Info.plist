@@ -45,5 +45,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+    <string>The camera permission is needed to upload a workout image.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>The photo library permission is needed to upload a workout image.</string>
 </dict>
 </plist>
