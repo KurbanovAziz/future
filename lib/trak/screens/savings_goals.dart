@@ -112,6 +112,7 @@ class _SavingsGoalsState extends State<SavingsGoals> {
             ),
             SizedBox(height: 16.h),
             TextField(
+              readOnly: true,
               style: const TextStyle(color: Colors.white),
               keyboardType: TextInputType.number,
               decoration: InputDecoration(

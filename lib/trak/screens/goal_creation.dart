@@ -10,6 +10,7 @@ import 'package:get_it/get_it.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../floor/dao/appdatabase/app_database.dart';
 import '../../floor/event_bus.dart';
@@ -48,6 +49,7 @@ class _GoalCreationState extends State<GoalCreation> {
   void initState() {
     super.initState();
     _initializeDatabase();
+    _loadSelectedImage();
     if (widget.goal != null) {
       _populateFields(widget.goal!);
     }
@@ -68,6 +70,18 @@ class _GoalCreationState extends State<GoalCreation> {
     } else {
       selectedImagePath = goal.image;
       _selectedImage = null;
+    }
+  }
+
+  void _loadSelectedImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedImagePath = prefs.getString('selected_image');
+    if (savedImagePath != null && savedImagePath.isNotEmpty) {
+      setState(() {
+        coverImages.insert(0, savedImagePath);
+        selectedImagePath = savedImagePath;
+        _selectedImage = File(savedImagePath);
+      });
     }
   }
 
@@ -159,7 +173,7 @@ class _GoalCreationState extends State<GoalCreation> {
           },
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0.r),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -270,12 +284,13 @@ class _GoalCreationState extends State<GoalCreation> {
                 },
               ),
             ),
-            const Spacer(),
+            SizedBox(height: 24.h),
             SizedBox(
               width: double.infinity,
               child: GestureDetector(
                 onTap: () {
                   _saveGoal();
+                  Navigator.pop(context);
                 },
                 child: Container(
                   height: 56.h,
@@ -304,7 +319,7 @@ class _GoalCreationState extends State<GoalCreation> {
   }
 
   Widget _buildMyPhotoOption() {
-    bool isSelected = _selectedImage != null;
+    bool isSelected = _selectedImage != null && selectedImagePath == null;
     return GestureDetector(
       onTap: photosPermissionStatus,
       child: Container(
@@ -316,21 +331,25 @@ class _GoalCreationState extends State<GoalCreation> {
           color: FsaColor.darkGrey,
           border: isSelected ? Border.all(color: Colors.white, width: 2.w) : null,
         ),
-        child: Center(
-          child: _selectedImage == null
-              ? const Text(
-            'My photo',
-            style: TextStyle(color: Colors.grey),
-          )
-              : Image.file(_selectedImage!, fit: BoxFit.cover),
+        child: const Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(Icons.camera_alt, color: Colors.grey,),
+              Text(
+                'My photo',
+                style: TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-
   Widget _buildCoverOption(String imagePath) {
-    bool isSelected = imagePath == selectedImagePath;
+    bool isSelected = imagePath == selectedImagePath && _selectedImage == null;
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -348,7 +367,14 @@ class _GoalCreationState extends State<GoalCreation> {
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8.0.r),
-          child: Image.asset(
+          child: imagePath.startsWith('/')
+              ? Image.file(
+            File(imagePath),
+            width: 100.w,
+            height: 100.h,
+            fit: BoxFit.cover,
+          )
+              : Image.asset(
             imagePath,
             width: 100.w,
             height: 100.h,
@@ -358,6 +384,7 @@ class _GoalCreationState extends State<GoalCreation> {
       ),
     );
   }
+
 
   Future<void> _selectDate() async {
     DateTime? tempDate = selectedDate;
@@ -404,8 +431,11 @@ class _GoalCreationState extends State<GoalCreation> {
     if (pickedFile != null) {
       setState(() {
         _selectedImage = File(pickedFile.path);
-        selectedImagePath = null;
+        selectedImagePath = pickedFile.path;
+        coverImages.insert(0, pickedFile.path);
       });
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('selected_image', pickedFile.path);
     }
   }
 
@@ -425,7 +455,9 @@ class _GoalCreationState extends State<GoalCreation> {
         name: name,
         number: amount,
         date: date,
-        image: imagePath);
+        accumulated: widget.goal?.accumulated,
+        image: imagePath
+    );
 
     await goalDao.insertOrUpdateGoals(updatedGoal);
     event.fire(UpdateList());

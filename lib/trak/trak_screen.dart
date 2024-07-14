@@ -339,6 +339,7 @@ class _TrakScreenState extends State<TrakScreen> {
             actions: [
               CupertinoActionSheetAction(
                 onPressed: () {
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -351,6 +352,7 @@ class _TrakScreenState extends State<TrakScreen> {
               ),
               CupertinoActionSheetAction(
                 onPressed: () {
+                  Navigator.pop(context);
                   _showDeleteDialog(context, goal);
                 },
                 child: const Text('Delete', style: TextStyle(color: FsaColor.red),),
@@ -358,7 +360,7 @@ class _TrakScreenState extends State<TrakScreen> {
             ],
             cancelButton: CupertinoActionSheetAction(
               onPressed: () {
-                Navigator.of(cont).pop;
+                Navigator.pop(context);
               },
               child: const Text('Cancel', style: TextStyle(color: Colors.blue)),
             ),
