@@ -38,7 +38,7 @@ class _GoalCreationState extends State<GoalCreation> {
   late GoalDao goalDao;
   final event = GetIt.I<EventBus>();
 
-  DateTime? selectedDate;
+  DateTime selectedDate = DateTime.now();
   List<String> coverImages = [
     Assets.imagesPhoto1,
     Assets.imagesPhoto2,
@@ -330,7 +330,7 @@ class _GoalCreationState extends State<GoalCreation> {
 
 
   Future<void> _selectDate() async {
-    DateTime? tempDate = selectedDate;
+    DateTime tempDate = selectedDate;
     showCupertinoModalPopup(
       context: context,
       builder: (BuildContext cont) {
@@ -351,7 +351,7 @@ class _GoalCreationState extends State<GoalCreation> {
                 setState(() {
                   selectedDate = tempDate;
                   _dateController.text =
-                      DateFormat('yyyy-MM-dd').format(selectedDate!);
+                      DateFormat('yyyy-MM-dd').format(selectedDate);
                 });
                 Navigator.of(cont).pop();
               },

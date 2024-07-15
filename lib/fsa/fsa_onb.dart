@@ -255,13 +255,10 @@ class OnboardingPageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double imageHeight = screenHeight * 0.55.h;
-
     return Container(
       alignment: Alignment.topCenter,
       child: Padding(
-        padding: EdgeInsets.only(top: 20.0.h),
+        padding: EdgeInsets.all(20.0.h),
         child: Column(
           children: [
             ClipRect(
@@ -270,24 +267,19 @@ class OnboardingPageItem extends StatelessWidget {
                 child: Image.asset(
                   dataRPBoard.image,
                   fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: imageHeight,
                 ),
               ),
             ),
             SizedBox(height: 12.h),
-            SizedBox(
-              height: 110.h,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Text(
-                  dataRPBoard.title,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 24.sp,
-                    color: FsaColor.white,
-                    fontWeight: FontWeight.w500,
-                  ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Text(
+                dataRPBoard.title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 24.sp,
+                  color: FsaColor.white,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),

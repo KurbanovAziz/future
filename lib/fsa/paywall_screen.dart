@@ -11,135 +11,139 @@ class PaywallScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double imageHeight = screenHeight * 0.40;
+
     return  Scaffold(
       backgroundColor: FsaColor.black,
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 50.0.h, horizontal: 16.w),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => const TBCBotmBar()),
-                      );
-                    },
-                    icon: Icon(
-                      Icons.close,
-                      color: Colors.white,
-                      size: 24.sp,
-                    )
-                ),
+        padding: EdgeInsets.only(top: 30.h, left: 16.w, right: 16.w),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const TBCBotmBar()),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.white,
+                    size: 24.sp,
+                  )
               ),
-              Image.asset(
-                  Assets.imagesPaywall
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                    "Get Premium",
-                    style: TextStyle(
-                        color: FsaColor.blue,
-                        fontSize: 32.sp,
-                        fontWeight: FontWeight.w400
-                    )
-                ),
-              ),
-              SizedBox(height: 16.h),
-              _buildFeatureRow('Access Endless Calculations'),
-              _buildFeatureRow('Create Unlimited Funds'),
-              SizedBox(height: 24.h),
-              Text(
-                  "Unlock all features just for ",
+            ),
+            Image.asset(
+              Assets.imagesPaywall,
+              width: double.infinity,
+              height: imageHeight,
+              fit: BoxFit.contain,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                  "Get Premium",
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24.sp,
+                      color: FsaColor.blue,
+                      fontSize: 32.sp,
                       fontWeight: FontWeight.w400
                   )
               ),
-              Text(
-                  "\$0.99",
-                  style: TextStyle(
-                    color: FsaColor.blue,
+            ),
+            SizedBox(height: 8.h),
+            _buildFeatureRow('Access Endless Calculations'),
+            _buildFeatureRow('Create Unlimited Funds'),
+            SizedBox(height: 20.h),
+            Text(
+                "Unlock all features just for ",
+                style: TextStyle(
+                    color: Colors.white,
                     fontSize: 24.sp,
-                    fontWeight: FontWeight.w400,
-                  )
-              ),
-              SizedBox(height: 20.h),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: Container(
-                  height: 56.h,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(32.r),
-                    color: FsaColor.blue,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'GET PREMIUM',
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w500,
-                          color: FsaColor.white,
-                        ),
+                    fontWeight: FontWeight.w400
+                )
+            ),
+            Text(
+                "\$0.99",
+                style: TextStyle(
+                  color: FsaColor.blue,
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.w400,
+                )
+            ),
+            SizedBox(height: 20.h),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Container(
+                height: 56.h,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(32.r),
+                  color: FsaColor.blue,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'GET PREMIUM',
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w500,
+                        color: FsaColor.white,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButton(
-                        onPressed: () {
-                          // todo
-                        },
-                        child: Text(
-                            "Terms of Use",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14.sp
-                            )
-                        )
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          // todo
-                        },
-                        child: Text(
-                            "Restore",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14.sp
-                            )
-                        )
-                    ),
-                    TextButton(
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
                       onPressed: () {
-                        //todo
+                        // todo
                       },
                       child: Text(
-                          "Privacy Policy",
+                          "Terms of Use",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 14.sp
                           )
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
+                      )
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        // todo
+                      },
+                      child: Text(
+                          "Restore",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14.sp
+                          )
+                      )
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      //todo
+                    },
+                    child: Text(
+                        "Privacy Policy",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14.sp
+                        )
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
