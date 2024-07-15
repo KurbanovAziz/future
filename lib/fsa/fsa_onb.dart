@@ -156,85 +156,70 @@ class _SenseOnbState extends State<TBConBording> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: [
-          PageView.builder(
-            controller: _controller,
-            onPageChanged: (index) {
-              setState(() {
-                introIndex = index;
-              });
-              if (index == dataFsaBoard.length - 1) {
-                _showRatingDialog();
-              }
-            },
-            itemCount: dataFsaBoard.length,
-            itemBuilder: (context, index) {
-              return OnboardingPageItem(
-                dataRPBoard: dataFsaBoard[index],
-                currentIndex: introIndex,
-                itemCount: dataFsaBoard.length,
-              );
-            },
-          ),
-          SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                if (showIndicators)
-                  Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 18.h),
-                      ),
-                      FsaMot(
-                        onPressed: () {
-                          if (introIndex < dataFsaBoard.length - 1) {
-                            _controller.animateToPage(
-                              introIndex + 1,
-                              duration: const Duration(milliseconds: 350),
-                              curve: Curves.easeInOut,
-                            );
-                          } else {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const PaywallScreen(),
-                              ),
-                            );
-                          }
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16.w),
-                          child: Container(
-                            height: 56.h,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              color: FsaColor.blue,
-                              borderRadius: BorderRadius.circular(32.r),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Continue',
-                                  style: TextStyle(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.w500,
-                                    color: FsaColor.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                SizedBox(height: 40.h),
-              ],
+          Expanded(
+            child: PageView.builder(
+              controller: _controller,
+              onPageChanged: (index) {
+                setState(() {
+                  introIndex = index;
+                });
+                if (index == dataFsaBoard.length - 1) {
+                  _showRatingDialog();
+                }
+              },
+              itemCount: dataFsaBoard.length,
+              itemBuilder: (context, index) {
+                return OnboardingPageItem(
+                  dataRPBoard: dataFsaBoard[index],
+                  currentIndex: introIndex,
+                  itemCount: dataFsaBoard.length,
+                );
+              },
             ),
           ),
+          if (showIndicators)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+              child: FsaMot(
+                onPressed: () {
+                  if (introIndex < dataFsaBoard.length - 1) {
+                    _controller.animateToPage(
+                      introIndex + 1,
+                      duration: const Duration(milliseconds: 350),
+                      curve: Curves.easeInOut,
+                    );
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PaywallScreen(),
+                      ),
+                    );
+                  }
+                },
+                child: Container(
+                  height: 56.h,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: FsaColor.blue,
+                    borderRadius: BorderRadius.circular(32.r),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Continue',
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w500,
+                        color: FsaColor.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          SizedBox(height: 40.h),
         ],
       ),
     );
@@ -270,7 +255,7 @@ class OnboardingPageItem extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 12.h),
+            const Spacer(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Text(
